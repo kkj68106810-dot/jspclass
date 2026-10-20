@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+/* =========================================
+   공통 스타일
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Malgun Gothic', sans-serif;
+    background-color: #fcfbf9;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #fff;
+    border-bottom: 2px solid #284435;
+}
+
+header h2 {
+    color: #1a422a;
+    font-weight: 900;
+}
+
+header ul {
+    display: flex;
+    gap: 30px;
+}
+
+header ul li a {
+    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+section {
+    min-height: 600px;
+    padding: 50px 0;
+}
+
+/* =========================================
+   메뉴조회 (menuList.jsp) 스타일
+========================================= */
+.menu-list-container {
+    padding: 20px 0;
+}
+
+/* 상단 카테고리 (NEW, COFFEE, COLD BREW 등) */
+.menu-list-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.menu-list-header p {
+    padding: 10px 30px;
+    background-color: #eee;
+    color: #888;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0; /* p 태그 기본 여백 제거 */
+}
+
+/* 활성화되거나 마우스 오버 시 색상 변경 */
+.menu-list-header p:hover, 
+.menu-list-header p:nth-child(3) { /* 3번째 COLD BREW 활성화 예시 */
+    background-color: #284435;
+    color: #fff;
+}
+
+/* 메뉴 리스트 그리드 (5열 배치) */
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 개별 메뉴 아이템 */
+.menu {
+    text-align: center;
+    position: relative;
+}
+
+.menu-image {
+    margin-bottom: 15px;
+}
+
+.menu-image img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+}
+
+.menu-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.menu-description {
+    font-size: 12px;
+    color: #777;
+    word-break: keep-all;
+}
+
+/* =========================================
+   메뉴등록 & 메뉴등록 확인 (menuInsert.jsp, menuInsertProc.jsp) 스타일
+========================================= */
+h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+/* 테이블 공통 디자인 */
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 600px; /* 테이블 너비 고정 */
+}
+
+table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* 테이블의 첫 번째 열 (라벨 영역) 회색 배경 처리 */
+table tr td:first-child {
+    background-color: #f1f1f1;
+    text-align: center;
+    width: 120px;
+    font-weight: bold;
+}
+
+/* 입력 폼 요소 디자인 */
+table input[type="text"],
+table select {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+/* 라디오 버튼 텍스트 정렬 */
+table input[type="radio"] {
+    margin-right: 5px;
+}
+table input[type="radio"]:nth-child(2) {
+    margin-left: 15px;
+}
+
+/* 마지막 제출 버튼 행 가운데 정렬 및 디자인 */
+table tr:last-child td {
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+table input[type="submit"] {
+    padding: 8px 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+table input[type="submit"]:hover {
+    background-color: #eee;
+}
+
+/* =========================================
+   푸터 (footer.jsp) 스타일
+========================================= */
+footer {
+    background-color: #284435;
+    color: #fff;
+    padding: 30px 50px;
+    text-align: left;
+}
+
+footer h3 {
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+footer .footer-p, footer .footer {
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 5px;
+}
