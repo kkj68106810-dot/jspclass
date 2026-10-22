@@ -49,8 +49,8 @@
 		
 		if(!(msg == "")) {%>
 			<script type="text/javascript">
-				alert(" <%=msg%> ")
-				history.go(-1);
+				alert(" <%=msg%> ");
+				location.href="index.jsp";
 			</script>		
 		<%} else { %>
 

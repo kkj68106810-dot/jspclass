@@ -117,12 +117,12 @@
 		if(!(msg == "")) {%>
 			<script type="text/javascript">
 				alert(" <%=msg%> ")
-				history.go(-1);
+				location.href="index.jsp"
 			</script>		
 		<%} else { %>
 			<script type="text/javascript">
 				alert(" 저장에 성공하였습니다. ")
-				history.go(-1);
+				location.href="index.jsp"
 			</script>
 		
 	<%}%>

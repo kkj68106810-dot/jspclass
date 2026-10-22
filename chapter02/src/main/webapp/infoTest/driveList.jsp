@@ -43,22 +43,20 @@
   		// DB는 네트워크의 톰캣서버를 통해 데이터가 전달되므로 개발자가 오류를 찾기 어렵다.
   		
   		try {
-    		Class.forName(driver);
-    		
-    		con = DriverManager.getConnection(url, user, password);
-    		
-    		String sql = "select tdr.DRV_DATE as drv_date , tdc.CAR_NO as car_no  , tdc.CAR_MODEL as car_model  , tdr.DRV_START as drv_start  , tdr.DRV_END as drv_end  , tde.DEPT_NAME as dept_name  , tdr.DRV_MONEY as drv_money from tbl_drive	tdr	join tbl_dept	tde	on tdr.DEPT_CODE = tde.DEPT_CODE join tbl_car tdc on tdr.car_no = tdc.car_no";
-    		
-    		pstmt = con.prepareStatement(sql);
-    		
-    		rs = pstmt.executeQuery();
-    		
-    		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년MM월dd일");	
+    		Class.forName(driver);    		
+    		con = DriverManager.getConnection(url, user, password);    		
+    		String sql = "select tdr.DRV_DATE as drv_date , tdc.CAR_NO as car_no  , tdc.CAR_MODEL as car_model  , tdr.DRV_START as drv_start  , tdr.DRV_END as drv_end  , tde.DEPT_NAME as dept_name  , tdr.DRV_MONEY as drv_money from tbl_drive	tdr	join tbl_dept	tde	on tdr.DEPT_CODE = tde.DEPT_CODE join tbl_car tdc on tdr.car_no = tdc.car_no";    		
+    		pstmt = con.prepareStatement(sql);    		
+    		rs = pstmt.executeQuery();	
+    		    		
     		while(rs.next()) {
     			String drvStartStr = df.format(rs.getInt("drv_start"));
     			String drvEndStr = df.format(rs.getInt("drv_end"));
     			String drvMoneyStr = df.format(rs.getInt("drv_money"));
-    			String drvDateStr = simpleDateFormat.format(rs.getString("drv_date"));	
+    			    			
+    			java.util.Date date = new SimpleDateFormat("yyyyMMdd").parse(rs.getString("drv_date"));
+                String drvDateStr = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+    			    				
     		%>	
     			<tr>
     				<td><%= drvDateStr %></td>
