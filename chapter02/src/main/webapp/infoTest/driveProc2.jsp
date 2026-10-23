@@ -1,0 +1,102 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*"%>
+<%@ page import="java.sql.*" %>    
+    
+
+	<%
+    	request.setCharacterEncoding("utf-8");
+	
+		String drvDate = request.getParameter("drvDate");
+		String carNo = request.getParameter("carNo");
+		String drvStart = request.getParameter("drvStart");
+		String drvEnd = request.getParameter("drvEnd");
+		String deptCode = request.getParameter("deptCode");
+		String drvMoney = request.getParameter("drvMoney");
+
+    
+  		//DB 연동 시작---------------------------------------------------
+  		Connection con = null;
+  		PreparedStatement pstmt = null;
+  		ResultSet rs = null;
+  		// DB 접속 정보 설정
+  		String driver = "com.mysql.cj.jdbc.Driver";
+  		String url = "jdbc:mysql://localhost:3306/jspdb?serverTimezone=UTC&useSSL=false";
+  		String user = "root";
+  		String password = "1q2w3e4r";
+  		
+		String msg = "";  		 
+  		// DB는 네트워크의 톰캣서버를 통해 데이터가 전달되므로 개발자가 오류를 찾기 어렵다.
+  		
+  		try {
+  			Class.forName(driver);
+  			
+			con = DriverManager.getConnection(url, user, password);
+		
+			int drvStartNum = Integer.parseInt(drvStart);
+			int drvEndNum = Integer.parseInt(drvEnd);
+			int drvMoneyNum = Integer.parseInt(drvMoney);
+			
+			
+			String sql = "INSERT INTO tbl_drive VALUE (?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, drvDate);
+			pstmt.setString(2, carNo);			
+			pstmt.setInt(3, drvStartNum);
+			pstmt.setInt(4, drvEndNum);			
+			pstmt.setString(5, deptCode);			
+			pstmt.setInt(6, drvMoneyNum);
+			
+			int resultCount = pstmt.executeUpdate();
+			
+			if(resultCount == 0 ){
+				msg = "저장에 실패하였습니다.";
+			}
+  			
+  		} catch(Exception e) {
+  			e.printStackTrace();
+  		} finally {
+  			if(con != null) {
+  				try {
+  					con.close();
+  				}catch (Exception e) {
+  					e.printStackTrace();
+  				}
+  			}
+  			if(rs != null) {
+  				try {
+  					rs.close();
+  				}catch (Exception e) {
+  					e.printStackTrace();
+  				}
+  			}
+
+  			if(pstmt != null) {
+  				try {
+  					pstmt.close();
+  				}catch (Exception e) {
+  					e.printStackTrace();
+  				}
+  			}
+
+  		}
+	
+			
+		String deptName = "";
+		
+		DecimalFormat df1 = new DecimalFormat("#,##0");	
+		
+		
+		if(!(msg == "")) {%>
+			<script type="text/javascript">
+				alert(" <%=msg%> ")
+				location.href="index.jsp"
+			</script>		
+		<%} else { %>
+			<script type="text/javascript">
+				alert(" 저장에 성공하였습니다. ")
+				location.href="index.jsp"
+			</script>
+		
+	<%}%>

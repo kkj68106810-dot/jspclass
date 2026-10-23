@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/main_info.css">
 </head>
 <body>
+<input type="hidden" name="page" value="carDrive" >
 	<%
 		request.setCharacterEncoding("utf-8");
 	
@@ -15,7 +16,10 @@
 		
 		// 메뉴를 클릭하지 않으면 기본화면인 home.jsp
 		String contentPage = "";
-				
+		
+		
+		System.out.println("index page : " + pageName);
+		
 		// 클릭한 메뉴의 page의 이름을 section에 보여준다.
 		if("carList.jsp".equals(pageName)){
 			contentPage = "carList.jsp";
