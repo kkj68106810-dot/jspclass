@@ -36,7 +36,7 @@
 	
 %>
 
-<script type="text/script">
+<script type="text/javascript">
 	<% if(msgChk) { %>
 		alert("회원등록이 완료됨")
 		location.href="memberForm.jsp"
