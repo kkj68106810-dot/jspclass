@@ -67,11 +67,6 @@ public class MemberJoinProc extends HttpServlet {
 		mdto.setInfo(request.getParameter("info"));
 		mdto.setJob(request.getParameter("job"));
 		
-		
-		
-		
-		System.out.println("입력 : [" +id + "], 조회 결과 [" + chkId + "]" );
-		
 		String jspAddress = "";
 		
 		if(id.equals(chkId)) {
@@ -81,7 +76,8 @@ public class MemberJoinProc extends HttpServlet {
 			System.out.println("&&&&& 암호 전부 패스 &&&&&&");
 			mdao.insertMember(mdto);
 			jspAddress = "/MemberListCon.do";		
-			
+			response.sendRedirect("index.jsp");
+			return;
 		} else {
 			request.setAttribute("msg", "비밀번호를 확인하세요.");
 			jspAddress="/member/joinerr.jsp";
@@ -89,11 +85,6 @@ public class MemberJoinProc extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher(jspAddress);
 		rd.forward(request, response);
-		
-		
-			
-		
-		
 		
 	}
 	
