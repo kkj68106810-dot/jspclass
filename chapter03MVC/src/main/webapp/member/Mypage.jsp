@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:if test="${param.result == 'ok'}">
+	<script>
+		alert("회원정보 수정됨");
+	</script>
+</c:if>
+<c:if test="${param.result == 'passfail'}">
+	<script>
+		alert("비밀번호 확인 요망");
+	</script>
+</c:if>
 	<div class="joinwrap">
 		<h2 style="text-align:center">My Page</h2>	
 				
@@ -11,7 +21,9 @@
 				<tr height="50">
 					<td align="center" width="150">아이디</td>
 					<td width="350">
-						<input type="text" name="id" readonly value="${sessionScope.id}">
+						<!-- 보험용 코드 -->
+						<input type="hidden" value="${member.id}" name="id" />
+						<input type="text" name="id" readonly value="${member.id}">						
 					</td>					
 				</tr>
 				
@@ -46,20 +58,11 @@
 				<tr height="50">
 					<td align="center" width="150">관심분야</td>
 					<td width="350">
-					 
-							<input type="checkbox" name="hobby" value="캠핑" id="camping"  >
-							<label for="camping">캠핑</label>&nbsp;&nbsp;
-							<input type="checkbox" name="hobby" value="등산" id="mount">
-							<label for="mount">등산</label>&nbsp;&nbsp;
-							
-					
-							<input type="checkbox" name="hobby" value="영화" id="movie">
-							<label for="movie">영화</label>&nbsp;&nbsp;
-							
-							
-							
-							<input type="checkbox" name="hobby" value="독서" id="book">
-							<label for="book">독서</label>&nbsp;&nbsp;
+						<c:forTokens items="캠핑 등산 영화 독서" delims=" " var="item">					 
+							<input type="checkbox" name="hobby" value="${item } " id="hobby_${item}" 
+								<c:if test="${member.hobby.contains(item)}">checked</c:if>>
+							<label for="hobby_${item}">${item }</label>&nbsp;&nbsp;							
+						</c:forTokens>	
 					</td>					
 				</tr>
 				

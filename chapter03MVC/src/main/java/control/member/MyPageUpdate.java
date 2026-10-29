@@ -29,44 +29,40 @@ public class MyPageUpdate extends HttpServlet {
 		MemberDTO mdto = new MemberDTO();
 		MemberDAO mdao = new MemberDAO();
 		
-		String id = request.getParameter("id");
-		
-		mdto.setId(id);
-		
+		String id = request.getParameter("id");		
 		
 		String pass = request.getParameter("pass");
 		String passChk = request.getParameter("passChk");
-		mdto.setPass(pass);
 		
-//		mdto.setPasschk(passChk);
-		mdto.setTel(request.getParameter("tel"));
-		mdto.setAge(request.getParameter("age"));
-		mdto.setEmail(request.getParameter("email"));
-		
-		// hobby는 체크박스이므로 동시에 여러개가 선택되어 저장되도록 코드작성해야함
-//		String[] hobbyArr = request.getParameterValues("hobby");
-//		String hobbyStr = "";
-//		for(String str : hobbyArr) {
-//			System.out.println("hobby" + str);
-//			hobbyStr += str + " ";
-//		};
-//		
-		
-//		System.out.println("hobbyStr" + hobbyStr);
-//		mdto.setHobby(hobbyStr);
-
-		mdto.setInfo(request.getParameter("info"));
-		mdto.setJob(request.getParameter("job"));
-		
-		if(pass.equals(passChk)) {
-			int resultNum = mdao.updateMember(mdto);
-			System.out.println(resultNum);
-			
-			response.sendRedirect("index.jsp?section=member/Mypage.jsp");
+		if(!pass.equals(passChk)) {
+			System.out.println("비밀번호가 틀리다.");
+			response.sendRedirect("MyPage.do?result=passfail");
 			return;
-		} 
-		RequestDispatcher rd = request.getRequestDispatcher("member/updateErr.jsp");
-		rd.forward(request, response);
+		}
+		
+		String[] arr = request.getParameterValues("hobby");
+		String oneHobby = "";
+		
+		if(arr != null) {
+			for(String str: arr) {
+				oneHobby += str + " ";
+			}	
+		}		
+		
+		// MemberDTO 에 담는다.
+		mdto.setId(id);
+		mdto.setPass(pass);
+		mdto.setEmail(request.getParameter("email"));
+		mdto.setTel(request.getParameter("tel"));
+		mdto.setHobby(oneHobby);
+		mdto.setJob(request.getParameter("job"));
+		mdto.setAge(request.getParameter("age"));
+		mdto.setInfo(request.getParameter("info"));
+		
+		
+		mdao.updateMember(mdto);
+		
+		response.sendRedirect("MyPage.do?result=ok");
 		
 	}
 }

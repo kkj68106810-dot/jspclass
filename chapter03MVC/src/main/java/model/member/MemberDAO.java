@@ -223,11 +223,11 @@ public class MemberDAO {
 		return medto;
 	}
 	
-	public int updateMember(MemberDTO mdto) {
+	public void updateMember(MemberDTO mdto) {
 		int returnNum = 0;
 		try {
 			con = Util.getConnection();
-			String sql = "UPDATE member set email = ?, tel = ?, job = ?, age = ?, info = ? where id = ?";
+			String sql = "UPDATE member set email = ?, tel = ?, job = ?, age = ?, hobby = ?, info = ? where id = ?";
 			pstmt = con.prepareStatement(sql);
 			
 //			pstmt.setString(2, mdto.getPass());
@@ -235,9 +235,9 @@ public class MemberDAO {
 			pstmt.setString(2, mdto.getTel());
 			pstmt.setString(3, mdto.getJob());
 			pstmt.setString(4, mdto.getAge());
-//			pstmt.setString(7, mdto.getHobby());
-			pstmt.setString(5, mdto.getInfo());	
-			pstmt.setString(6, mdto.getId());
+			pstmt.setString(5, mdto.getHobby());
+			pstmt.setString(6, mdto.getInfo());	
+			pstmt.setString(7, mdto.getId());
 			returnNum = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -249,9 +249,7 @@ public class MemberDAO {
 				if(pstmt != null) pstmt.close();
 			} catch (Exception e) {e.printStackTrace();}
 		}
-		
-		
-		return returnNum;
+	
 	}
 	
 }

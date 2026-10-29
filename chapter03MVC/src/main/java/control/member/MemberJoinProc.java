@@ -24,14 +24,6 @@ public class MemberJoinProc extends HttpServlet {
 	}
 	
 	protected void reqPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 서블릿 작성순서
-		// 1. 인코딩
-		// 2. input값 가져옴
-		// dto 인스턴스
-		// dao 인스턴스
-		// 예외처리하기(중복아이디체크, 암호체크)
-		// request.setAttribute("", mdto)
-		// RequestDispatch rd = request.getRequestDispatch()
 		request.setCharacterEncoding("utf-8");
 				
 		
@@ -72,8 +64,7 @@ public class MemberJoinProc extends HttpServlet {
 		if(id.equals(chkId)) {
 			request.setAttribute("msg", "이미 존재하는 아이디 입니다.");
 			jspAddress="/member/joinIderr.jsp";			
-		} else if (pass.equals(passChk)) {
-			System.out.println("&&&&& 암호 전부 패스 &&&&&&");
+		} else if (pass.equals(passChk)) {			
 			mdao.insertMember(mdto);
 			jspAddress = "/MemberListCon.do";		
 			response.sendRedirect("index.jsp");

@@ -29,24 +29,19 @@ public class MyPage extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String path = "";
+		String id = (String) session.getAttribute("id");
+		MemberDAO mdao = new MemberDAO();
+		MemberDTO mdto = new MemberDTO();
 		if(session != null) {
-			String id = (String) session.getAttribute("id");
-			MemberDAO mdao = new MemberDAO();
-			MemberDTO mdto = mdao.getMember(id);
-			System.out.println("hobby값 : " + mdto.getHobby());
-			String[] hobbys = mdto.getHobby().split(" ");
-			
-			request.setAttribute("member", mdto);
-			request.setAttribute("hobbys", hobbys);
-			path = "index.jsp?section=/member/Mypage.jsp";
-		} else {
-			request.setAttribute("msg", "오류");
-			path = "index.jsp";
-			
-		}
-		RequestDispatcher rd = request.getRequestDispatcher(path);
-		rd.forward(request, response);
+			System.out.println("여기는 어디냐");
+			mdto = mdao.getMember(id);
+			path = "/index.jsp?section=/member/Mypage.jsp";		
+		} 
 		
+		request.setAttribute("member", mdto);	
+		
+		RequestDispatcher rd = request.getRequestDispatcher(path);
+		rd.forward(request, response);	
 		
 	}
 }
