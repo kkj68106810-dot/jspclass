@@ -67,19 +67,19 @@
 				
 			</li>
 			<li>
-				1개 가격 : <%=df1.format(price)원%>
+				1개 가격 : <%=df1.format(price)%>원
 			</li>
 			<li>
 				수량 :<%=countNum%> 
 			</li>
 			<li>
-				총 금액 : <%=df1.format(price*countNum)원 %> 
+				총 금액 : <%=df1.format(price*countNum) %>원 
 			</li>
 			<li>
-				입금액 : <%= df1.format(payNum)원 %> 				
+				입금액 : <%= df1.format(payNum) %>원 				
 			</li>
 			<li>
-				거스름돈 : <%= df1.format(payNum - price*countNum)원 %> 				
+				거스름돈 : <%= df1.format(payNum - price*countNum) %>원 				
 			</li>
 		</ul>		
 	</div>

@@ -1,0 +1,94 @@
+/* Sapasap a desinio ti rewrap */
+.rewrap {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333;
+}
+
+.rewrap h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+/* Desinio ti table */
+.board-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid #2c3e50;
+    border-bottom: 2px solid #2c3e50;
+    margin-bottom: 20px;
+}
+
+.board-table th, 
+.board-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    font-size: 14px;
+}
+
+.board-table th {
+    background-color: #f8f9fa;
+    text-align: center;
+    font-weight: bold;
+    width: 15%;
+    color: #495057;
+}
+
+.board-table td {
+    background-color: #ffffff;
+    width: 35%;
+}
+
+.board-table td[colspan="3"] {
+    width: 85%;
+}
+
+.content-cell {
+    min-height: 250px;
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+/* Desinio dagiti butones */
+.btn-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reply {
+    background-color: #6c757d;
+    color: white;
+}
+.btn-reply:hover { background-color: #5a6268; }
+
+.btn-edit {
+    background-color: #28a745;
+    color: white;
+}
+.btn-edit:hover { background-color: #218838; }
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+.btn-delete:hover { background-color: #c82333; }
+
+.btn-list {
+    background-color: #007bff;
+    color: white;
+}
+.btn-list:hover { background-color: #0069d9; }

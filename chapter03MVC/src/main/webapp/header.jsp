@@ -25,7 +25,7 @@
 						</a>
 					</td>
 					<td align="center" width="200">
-						<a href="#" class="nav">
+						<a href="BoardListCon.do" class="nav">
 							게시판
 						</a>
 					</td>				
